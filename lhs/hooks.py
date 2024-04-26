@@ -2,7 +2,7 @@ app_name = "lhs"
 app_title = "LHS"
 app_publisher = "Arun Joy Thekkiniyath"
 app_description = "Learning Helper System"
-app_email = ""
+app_email = "contact@lhs.com"
 app_license = "mit"
 # required_apps = []
 
