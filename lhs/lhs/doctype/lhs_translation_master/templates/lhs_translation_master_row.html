@@ -1,22 +1,23 @@
 <div>
 	<ul>
-		{% for item in doc.translations %}		
-		<div class="container">
-			<div id="accordion">
-			  <div class="card">
-				<div class="card-header">
-				  <a class="card-link" data-toggle="collapse" href="#{{ item.english }}">
-					{{ item.english }}
-				  </a>
+		{% for item in doc.translations %}	
+			{% set id = "id" + item.idx|string %}	
+			<div class="container">
+				<div id="accordion">
+				<div class="card">
+					<div class="card-header">
+					<a class="card-link" data-toggle="collapse" href="#{{ id }}">
+						{{ item.english }}
+					</a>
+					</div>
+					<div id="{{ id }}" class="collapse" data-parent="#accordion">
+					<div class="card-body">
+						{{ item.german }}
+					</div>
+					</div>
 				</div>
-				<div id="{{ item.english }}" class="collapse" data-parent="#accordion">
-				  <div class="card-body">
-					{{ item.german }}
-				  </div>
 				</div>
-			  </div>
 			</div>
-		</div>
 		{% endfor %}
 	</ul>
 </div>
