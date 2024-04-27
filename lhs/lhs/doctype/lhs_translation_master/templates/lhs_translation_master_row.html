@@ -1,25 +1,35 @@
+<h1>Translate to German</h1>
 <div>
 	<ul>
 		{% for item in doc.translations %}	
-			{% set id = "id" + item.idx|string %}	
-			<div class="container">
-				<div id="accordion">
-				<div class="card">
-					<div class="card-header">
-					<a class="card-link" data-toggle="collapse" href="#{{ id }}">
-						{{ item.english }}
-					</a>
-					</div>
-					<div id="{{ id }}" class="collapse" data-parent="#accordion">
-					<div class="card-body">
-						{{ item.german }}
-					</div>
-					</div>
+			{% set resultId = "result" + item.idx|string %}	
+			{% set questionId = "question" + item.idx|string %}
+			{% set answerId = "answer" + item.idx|string %}	
+				<div id="{{ questionId }}">
+				  <p> {{ item.english }} </p>
+				  <input type="text" id="{{ answerId }}">
+				  <button onclick="checkAnswer('{{ answerId }}', '{{ item.german }}', '{{ resultId }}' )">Submit</button>
+				  <p id="{{ resultId }}"></p>
 				</div>
-				</div>
-			</div>
 		{% endfor %}
 	</ul>
 </div>
+<script>
+	function checkAnswer(inputId, correctAnswer, resultId) {
+	  var userInput = document.getElementById(inputId).value;
+	  var resultElement = document.getElementById(resultId);
+	  
+	  if (userInput.trim().toLowerCase() === correctAnswer.toLowerCase()) {
+		resultElement.textContent = "Correct";
+		resultElement.style.color = "green";
+	  } else {
+		resultElement.textContent = "Incorrect";
+		resultElement.style.color = "red";
+	  }
+	}
+	</script>
+
+
+
 	  
 <!-- this is a sample default list template -->
