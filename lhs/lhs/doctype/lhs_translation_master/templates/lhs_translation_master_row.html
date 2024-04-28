@@ -4,12 +4,16 @@
 		{% for item in doc.translations %}	
 			{% set resultId = "result" + item.idx|string %}	
 			{% set questionId = "question" + item.idx|string %}
-			{% set answerId = "answer" + item.idx|string %}	
+			{% set inputId = "input" + item.idx|string %}	
+			{% set correctAnswerId = "correctAnswer" + item.idx|string %}	
 				<div id="{{ questionId }}">
 				  <p> {{ item.english }} </p>
-				  <input type="text" id="{{ answerId }}">
-				  <button onclick="checkAnswer('{{ answerId }}', '{{ item.german }}', '{{ resultId }}' )">Submit</button>
+				  <input type="text" id="{{ inputId }}">
+				  <button onclick="checkAnswer('{{ inputId }}', '{{ item.german }}', '{{ resultId }}' )">Submit</button>
+				  <button onclick="showAnswer('{{ item.german }}', '{{ correctAnswerId }}' )">Show</button>
+				  <button onclick="hideAnswer('{{ correctAnswerId }}' )">Hide</button>
 				  <p id="{{ resultId }}"></p>
+				  <p id="{{ correctAnswerId }}"></p>
 				</div>
 		{% endfor %}
 	</ul>
@@ -26,6 +30,16 @@
 		resultElement.textContent = "Incorrect";
 		resultElement.style.color = "red";
 	  }
+	}
+	function showAnswer(correctAnswer, correctAnswerId) {
+	  var correctAnswerElement = document.getElementById(correctAnswerId);
+	  correctAnswerElement.textContent = correctAnswer;
+	  correctAnswerElement.style.color = "blue";
+	  correctAnswerElement.style.fontStyle = "italic"
+	}
+	function hideAnswer(correctAnswerId) {
+	  var correctAnswerElement = document.getElementById(correctAnswerId);
+	  correctAnswerElement.textContent = "";
 	}
 	</script>
 
