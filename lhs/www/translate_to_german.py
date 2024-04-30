@@ -12,4 +12,6 @@ def get_context(context):
         context.translations = random.sample(translations, 10)
     else:
         context.translations = translations
+    # if caching is enabled, random sampling will not always work
+    context.no_cache = 1
     return context
