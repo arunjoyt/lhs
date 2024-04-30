@@ -7,7 +7,7 @@
 			{% set inputId = "input" + item.idx|string %}	
 			{% set correctAnswerId = "correctAnswer" + item.idx|string %}	
 				<div id="{{ questionId }}">
-				  <p> {{ item.english }} </p>
+				  <p> {{ loop.index }}. {{ item.english }} </p>
 				  <input type="text" id="{{ inputId }}">
 				  <button onclick="checkAnswer('{{ inputId }}', '{{ item.german }}', '{{ resultId }}', '{{ correctAnswerId }}' )">Submit</button>
 				  <button onclick="showAnswer('{{ item.german }}', '{{ correctAnswerId }}' )">Show</button>
