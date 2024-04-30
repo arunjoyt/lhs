@@ -7,12 +7,14 @@
 			{% set inputId = "input" + item.idx|string %}	
 			{% set correctAnswerId = "correctAnswer" + item.idx|string %}	
 				<div id="{{ questionId }}">
-				  <p> {{ loop.index }}. {{ item.english }} </p>
-				  <input type="text" id="{{ inputId }}">
-				  <button onclick="checkAnswer('{{ inputId }}', '{{ item.german }}', '{{ resultId }}', '{{ correctAnswerId }}' )">Submit</button>
-				  <button onclick="showAnswer('{{ item.german }}', '{{ correctAnswerId }}' )">Show</button>
-				  <button onclick="hideAnswer('{{ correctAnswerId }}' )">Hide</button>
-				  <br>
+					<br>
+				<ul class="list-unstyled">
+					<li> {{ loop.index }}. {{ item.english }} </li>
+				 </ul>
+				  <input type="text" class="form-control-sm" id="{{ inputId }}">
+				  <button onclick="checkAnswer('{{ inputId }}', '{{ item.german }}', '{{ resultId }}', '{{ correctAnswerId }}' )" class="btn btn-primary">Submit</button>
+				  <button onclick="showAnswer('{{ item.german }}', '{{ correctAnswerId }}' )" class="btn btn-primary">Show</button>
+				  <button onclick="hideAnswer('{{ correctAnswerId }}' )" class="btn btn-primary">Hide</button>
 				  <span id="{{ resultId }}"></span>
 				  <span id="{{ correctAnswerId }}"></span>
 				</div>
