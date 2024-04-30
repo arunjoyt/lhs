@@ -9,23 +9,25 @@
 				<div id="{{ questionId }}">
 				  <p> {{ item.english }} </p>
 				  <input type="text" id="{{ inputId }}">
-				  <button onclick="checkAnswer('{{ inputId }}', '{{ item.german }}', '{{ resultId }}' )">Submit</button>
+				  <button onclick="checkAnswer('{{ inputId }}', '{{ item.german }}', '{{ resultId }}', '{{ correctAnswerId }}' )">Submit</button>
 				  <button onclick="showAnswer('{{ item.german }}', '{{ correctAnswerId }}' )">Show</button>
 				  <button onclick="hideAnswer('{{ correctAnswerId }}' )">Hide</button>
-				  <p id="{{ resultId }}"></p>
-				  <p id="{{ correctAnswerId }}"></p>
+				  <br>
+				  <span id="{{ resultId }}"></span>
+				  <span id="{{ correctAnswerId }}"></span>
 				</div>
 		{% endfor %}
 	</ul>
 </div>
 <script>
-	function checkAnswer(inputId, correctAnswer, resultId) {
+	function checkAnswer(inputId, correctAnswer, resultId, correctAnswerId) {
 	  var userInput = document.getElementById(inputId).value;
 	  var resultElement = document.getElementById(resultId);
 	  
 	  if (userInput.trim().toLowerCase() === correctAnswer.toLowerCase()) {
 		resultElement.textContent = "Correct";
 		resultElement.style.color = "green";
+		showAnswer(correctAnswer, correctAnswerId);
 	  } else {
 		resultElement.textContent = "Incorrect";
 		resultElement.style.color = "red";
