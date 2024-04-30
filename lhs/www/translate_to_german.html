@@ -1,0 +1,56 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<h1>Translate to German</h1>
+<div>
+	<ul>
+		{% for item in translations %}	
+			{% set resultId = "result" + loop.index|string %}	
+			{% set questionId = "question" + loop.index|string %}
+			{% set inputId = "input" + loop.index|string %}	
+			{% set correctAnswerId = "correctAnswer" + loop.index|string %}	
+				<div id="{{ questionId }}">
+					<br>
+				<ul class="list-unstyled">
+					<li> {{ loop.index }}. {{ item.english }} </li>
+				 </ul>
+				  <input type="text" class="form-control-sm" id="{{ inputId }}">
+				  <button onclick="checkAnswer('{{ inputId }}', '{{ item.german }}', '{{ resultId }}', '{{ correctAnswerId }}' )" class="btn btn-primary">Submit</button>
+				  <button onclick="showAnswer('{{ item.german }}', '{{ correctAnswerId }}' )" class="btn btn-primary">Show</button>
+				  <button onclick="hideAnswer('{{ correctAnswerId }}' )" class="btn btn-primary">Hide</button>
+				  <br>
+				  <span id="{{ resultId }}"></span>
+				  <span id="{{ correctAnswerId }}"></span>
+				</div>
+		{% endfor %}
+	</ul>
+</div>
+<script>
+	function checkAnswer(inputId, correctAnswer, resultId, correctAnswerId) {
+	  var userInput = document.getElementById(inputId).value;
+	  var resultElement = document.getElementById(resultId);
+	  
+	  if (userInput.trim().toLowerCase() === correctAnswer.toLowerCase()) {
+		resultElement.textContent = "Correct";
+		resultElement.style.color = "green";
+		showAnswer(correctAnswer, correctAnswerId);
+	  } else {
+		resultElement.textContent = "Incorrect";
+		resultElement.style.color = "red";
+	  }
+	}
+	function showAnswer(correctAnswer, correctAnswerId) {
+	  var correctAnswerElement = document.getElementById(correctAnswerId);
+	  correctAnswerElement.textContent = correctAnswer;
+	  correctAnswerElement.style.color = "blue";
+	  correctAnswerElement.style.fontStyle = "italic"
+	}
+	function hideAnswer(correctAnswerId) {
+	  var correctAnswerElement = document.getElementById(correctAnswerId);
+	  correctAnswerElement.textContent = "";
+	}
+	</script>
+
+
+{% endblock %}
+	  
+<!-- this is a sample default list template -->
