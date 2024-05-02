@@ -22,6 +22,10 @@
 				  <span id="{{ correctAnswerId }}"></span>
 				</div>
 		{% endfor %}
+		<br>
+		<button onclick="checkScore('{{ translations|length }}')" class="btn btn-primary">Check Score</button>
+		<span>&nbsp;&nbsp;</span>
+		<span id="score"></span>
 	</ul>
 </div>
 <script>
@@ -47,6 +51,19 @@
 	function hideAnswer(correctAnswerId) {
 	  var correctAnswerElement = document.getElementById(correctAnswerId);
 	  correctAnswerElement.textContent = "";
+	}
+	function checkScore(translations_count) {
+	  var correctCount = 0;
+	  for (var i = 1; i <= translations_count; i++) {
+            var spanContent = document.getElementById('result' + i).textContent;
+            // Check if the span content is Correct or Incorrect and increment counters accordingly
+            if (spanContent.trim() === "Correct") {
+                correctCount++;
+            }
+        }
+		// Display the score
+		var scoreElement = document.getElementById('score');
+		scoreElement.textContent = correctCount+"/"+translations_count;
 	}
 	</script>
 
