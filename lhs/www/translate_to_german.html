@@ -33,13 +33,18 @@
 	  var userInput = document.getElementById(inputId).value;
 	  var resultElement = document.getElementById(resultId);
 	  
-	  if (userInput.trim().toLowerCase() === correctAnswer.toLowerCase()) {
-		resultElement.textContent = "Correct";
-		resultElement.style.color = "green";
-		showAnswer(correctAnswer, correctAnswerId);
-	  } else {
-		resultElement.textContent = "Incorrect";
-		resultElement.style.color = "red";
+	  // first set the evaluation as Incorrect.
+	  resultElement.textContent = "Incorrect";
+	  resultElement.style.color = "red";
+	  const correctAnswersArray = correctAnswer.split(',');
+	  for (let i = 0; i < correctAnswersArray.length; i++) {
+		console.log(correctAnswersArray[i])
+		if (userInput.trim().toLowerCase() === correctAnswersArray[i].trim().toLowerCase()) {
+			resultElement.textContent = "Correct";
+			resultElement.style.color = "green";
+			showAnswer(correctAnswer, correctAnswerId);
+			break;
+		} 
 	  }
 	}
 	function showAnswer(correctAnswer, correctAnswerId) {
