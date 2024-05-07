@@ -20,10 +20,8 @@ def get_context(context):
 @frappe.whitelist()
 def save_score(user, correct_answer_count, total_question_count):
     doc = frappe.new_doc("LHSUserScore")
-    doc.user  = frappe.get_doc("User", user)
-    print(doc.user)
+    doc.user_name  = user
     doc.correct_count = correct_answer_count
     doc.total_count = total_question_count
     doc.insert(ignore_permissions=True)
-    frappe.db.commit()
     return "Score saved successfully"

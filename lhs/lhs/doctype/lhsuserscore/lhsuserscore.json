@@ -5,19 +5,11 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "user",
+  "user_name",
   "correct_count",
   "total_count"
  ],
  "fields": [
-  {
-   "fieldname": "user",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "User",
-   "options": "User",
-   "reqd": 1
-  },
   {
    "fieldname": "correct_count",
    "fieldtype": "Int",
@@ -29,11 +21,18 @@
    "fieldtype": "Int",
    "label": "Total Count",
    "reqd": 1
+  },
+  {
+   "fieldname": "user_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Username",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-07 15:47:39.240170",
+ "modified": "2024-05-07 17:31:57.918281",
  "modified_by": "Administrator",
  "module": "LHS",
  "name": "LHSUserScore",
