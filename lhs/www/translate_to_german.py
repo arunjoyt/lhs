@@ -19,7 +19,7 @@ def get_context(context):
 
 @frappe.whitelist()
 def save_score(user, correct_answer_count, total_question_count):
-    doc = frappe.new_doc("LHSUserScore")
+    doc = frappe.new_doc("LHSScore")
     doc.user_name  = user
     doc.correct_count = correct_answer_count
     doc.total_count = total_question_count
