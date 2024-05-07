@@ -23,9 +23,12 @@
 				</div>
 		{% endfor %}
 		<br>
-		<button onclick="checkScore('{{ translations|length }}')" class="btn btn-primary">Check Score</button>
+		<button onclick="checkScore('{{ translations|length }}','{{ user }}')" class="btn btn-primary">Check Score</button>
 		<span>&nbsp;&nbsp;</span>
 		<span id="score"></span>
+		{% if user == 'Guest'  %}
+		<a href="/login" class="btn btn-primary">Login</a><span> to save your score.</span>
+		{% endif %}
 	</ul>
 </div>
 <script>
@@ -38,7 +41,6 @@
 	  resultElement.style.color = "red";
 	  const correctAnswersArray = correctAnswer.split(',');
 	  for (let i = 0; i < correctAnswersArray.length; i++) {
-		console.log(correctAnswersArray[i])
 		if (userInput.trim().toLowerCase() === correctAnswersArray[i].trim().toLowerCase()) {
 			resultElement.textContent = "Correct";
 			resultElement.style.color = "green";
@@ -57,9 +59,9 @@
 	  var correctAnswerElement = document.getElementById(correctAnswerId);
 	  correctAnswerElement.textContent = "";
 	}
-	function checkScore(translations_count) {
+	function checkScore(total_question_count, user) {
 	  var correctCount = 0;
-	  for (var i = 1; i <= translations_count; i++) {
+	  for (var i = 1; i <= total_question_count; i++) {
             var spanContent = document.getElementById('result' + i).textContent;
             // Check if the span content is Correct or Incorrect and increment counters accordingly
             if (spanContent.trim() === "Correct") {
@@ -68,7 +70,20 @@
         }
 		// Display the score
 		var scoreElement = document.getElementById('score');
-		scoreElement.textContent = correctCount+"/"+translations_count;
+		scoreElement.textContent = correctCount+"/"+total_question_count;
+		if (user !== "Guest") {
+			saveScore(user, correctCount, total_question_count)
+		}
+	}
+	function saveScore(user, correct_answer_count, total_question_count) {
+		frappe.call({
+            method: 'lhs.www.translate_to_german.save_score',
+			args: {
+				user: user,
+				correct_answer_count: correct_answer_count,
+				total_question_count: total_question_count
+			}
+        });
 	}
 	</script>
 
