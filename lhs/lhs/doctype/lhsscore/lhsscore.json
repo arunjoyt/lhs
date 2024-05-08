@@ -7,7 +7,8 @@
  "field_order": [
   "user_name",
   "correct_count",
-  "total_count"
+  "total_count",
+  "route"
  ],
  "fields": [
   {
@@ -24,11 +25,17 @@
    "fieldname": "total_count",
    "fieldtype": "Data",
    "label": "Total Count"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
   }
  ],
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-07 17:54:26.941309",
+ "modified": "2024-05-08 07:56:24.164465",
  "modified_by": "Administrator",
  "module": "LHS",
  "name": "LHSScore",
@@ -47,6 +54,7 @@
    "write": 1
   }
  ],
+ "route": "stats",
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": []
