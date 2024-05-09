@@ -4,6 +4,20 @@ app_publisher = "Arun Joy Thekkiniyath"
 app_description = "Learning Helper System"
 app_email = "contact@lhs.com"
 app_license = "mit"
+
+fixtures = [
+    {
+        "doctype": "Role",
+        "filters": [["name", "=", "LHS Web User"]]
+    },
+    {
+        "doctype": "Custom DocPerm",
+        "filters": {
+            "role": ["in","LHS Web User"]
+        }
+    },
+]
+
 # required_apps = []
 
 # Includes in <head>
