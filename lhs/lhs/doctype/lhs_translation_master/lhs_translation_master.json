@@ -2,12 +2,15 @@
  "actions": [],
  "allow_guest_to_view": 1,
  "allow_rename": 1,
+ "autoname": "format:UNIT-{unit_number}",
  "creation": "2024-04-26 10:51:40.056567",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "route",
-  "translations"
+  "translations",
+  "unit_number",
+  "unit_name"
  ],
  "fields": [
   {
@@ -20,15 +23,26 @@
    "fieldtype": "Table",
    "label": "Translations",
    "options": "LHS English German Translation"
+  },
+  {
+   "fieldname": "unit_number",
+   "fieldtype": "Int",
+   "label": "Unit Number"
+  },
+  {
+   "fieldname": "unit_name",
+   "fieldtype": "Data",
+   "label": "Unit Name"
   }
  ],
  "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-26 10:53:08.022275",
+ "modified": "2024-05-14 09:30:52.264007",
  "modified_by": "Administrator",
  "module": "LHS",
  "name": "LHS Translation Master",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
