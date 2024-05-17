@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:LHSSCORE-{######}",
  "creation": "2024-05-07 17:53:44.047430",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -8,7 +9,8 @@
   "user_name",
   "correct_count",
   "total_count",
-  "route"
+  "route",
+  "submit_date"
  ],
  "fields": [
   {
@@ -30,15 +32,21 @@
    "fieldname": "route",
    "fieldtype": "Data",
    "label": "Route"
+  },
+  {
+   "fieldname": "submit_date",
+   "fieldtype": "Datetime",
+   "label": "Submit Date"
   }
  ],
  "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-08 07:56:24.164465",
+ "modified": "2024-05-17 17:29:22.279492",
  "modified_by": "Administrator",
  "module": "LHS",
  "name": "LHSScore",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

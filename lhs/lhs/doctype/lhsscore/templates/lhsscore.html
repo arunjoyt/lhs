@@ -1,7 +1,7 @@
 {% extends "templates/web.html" %}
 
 {% block page_content %}
-{{ doc.user_name }}: {{ doc.correct_count }}/{{ doc.total_count }}
+{{ doc.submit_date.strftime("%Y-%m-%d %H:%M:%S") }} | {{ doc.user_name }} | {{ doc.correct_count }}/{{ doc.total_count }}
 {% endblock %}
 
 <!-- this is a sample default web page template -->

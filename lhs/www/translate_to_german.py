@@ -1,5 +1,6 @@
 import frappe
 import random
+from datetime import datetime
 
 def get_context(context):
     context.user = frappe.session.user
@@ -23,5 +24,6 @@ def save_score(user, correct_answer_count, total_question_count):
     doc.user_name  = user
     doc.correct_count = correct_answer_count
     doc.total_count = total_question_count
+    doc.submit_date = datetime.now()
     doc.insert(ignore_permissions=True)
     return "Score saved successfully"
