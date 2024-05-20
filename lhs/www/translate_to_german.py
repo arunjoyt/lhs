@@ -4,14 +4,15 @@ from datetime import datetime
 
 def get_context(context):
     context.user = frappe.session.user
+    questions_per_page = frappe.get_doc("LHS Settings").questions_per_page
     master_records = frappe.get_all("LHS Translation Master")
     translations = []
     for record in master_records:
         master_doc = frappe.get_doc("LHS Translation Master", record.name)
         translations.extend(master_doc.translations)
-    # select a random sample of 10 translations
-    if len(translations) > 10: 
-        context.translations = random.sample(translations, 10)
+    # select a random sample of translations
+    if len(translations) > questions_per_page: 
+        context.translations = random.sample(translations, questions_per_page)
     else:
         context.translations = translations
     # if caching is enabled, random sampling will not always work
