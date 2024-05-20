@@ -2,7 +2,6 @@
 {% block page_content %}
 <h1>Translate to German</h1>
 <div>
-	<ul>
 		{% for item in translations %}	
 			{% set resultId = "result" + loop.index|string %}	
 			{% set questionId = "question" + loop.index|string %}
@@ -29,7 +28,6 @@
 		{% if user == 'Guest'  %}
 		<a href="/login" class="btn btn-primary">Login</a><span> to save your score.</span>
 		{% endif %}
-	</ul>
 </div>
 <h3>Stats</h3>
 {% if user != 'Guest'  %}
