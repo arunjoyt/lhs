@@ -60,7 +60,7 @@
 	  // first set the evaluation as Incorrect.
 	  resultElement.textContent = "Incorrect";
 	  resultElement.style.color = "red";
-	  const correctAnswersArray = correctAnswer.split(',');
+	  const correctAnswersArray = correctAnswer.split('|');
 	  for (let i = 0; i < correctAnswersArray.length; i++) {
 		if (userInput.trim().toLowerCase() === correctAnswersArray[i].trim().toLowerCase()) {
 			resultElement.textContent = "Correct";
