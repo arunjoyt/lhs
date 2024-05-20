@@ -16,6 +16,16 @@ def get_context(context):
     else:
         context.translations = translations
     # if caching is enabled, random sampling will not always work
+    
+    # get score of logged in user from LHSScore
+    if (context.user != 'Guest'):
+        scores = frappe.get_list(
+            "LHSScore",
+            filters={"user_name": context.user},
+            fields=['submit_date',"correct_count","total_count"]
+            )
+        context.scores = scores
+
     context.no_cache = 1
     return context
 

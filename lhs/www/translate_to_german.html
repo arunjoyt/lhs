@@ -31,6 +31,29 @@
 		{% endif %}
 	</ul>
 </div>
+<h3>Stats</h3>
+{% if user != 'Guest'  %}
+<div>
+	 <table class="table table-sm table-hover">
+		<thead>
+		  <tr>
+			<th scope="col">#</th>
+			<th scope="col">Date</th>
+			<th scope="col">Score</th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for item in scores %}
+		  <tr>
+			<th scope="row">{{ loop.index }}</th>
+			<td>{{ item.submit_date.strftime("%Y-%m-%d %H:%M") }}</td>
+			<td>{{ item.correct_count }} / {{item.total_count}}</td>
+		  </tr>
+		  {% endfor %}
+		</tbody>
+	  </table>
+</div>
+{% endif %}
 <script>
 	function checkAnswer(inputId, correctAnswer, resultId, correctAnswerId) {
 	  var userInput = document.getElementById(inputId).value;
