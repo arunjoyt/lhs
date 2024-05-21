@@ -24,6 +24,8 @@
 		{% endfor %}
 		<br>
 		<button onclick="checkScore('{{ translations|length }}','{{ user }}')" class="btn btn-primary">Submit All / Check Score</button>
+		<button onclick="showAll('{{ translations|length }}')" class="btn btn-primary">Show All</button>
+		<button onclick="hideAll('{{ translations|length }}')" class="btn btn-primary">Hide All</button>
 		<span>&nbsp;&nbsp;</span>
 		<span id="score"></span>
 		{% if user == 'Guest'  %}
@@ -112,6 +114,21 @@
 				total_question_count: total_question_count
 			}
         });
+	}
+
+	function showAll(total_question_count) {
+	  for (var i = 1; i <= total_question_count; i++) {
+			var correctAnswerId = "correctAnswer" + i;
+			correctAnswer = document.getElementById(correctAnswerId).textContent;
+			showAnswer(correctAnswer, correctAnswerId)
+	  }
+	}
+
+	function hideAll(total_question_count) {
+	  for (var i = 1; i <= total_question_count; i++) {
+			var correctAnswerId = "correctAnswer" + i;
+			hideAnswer(correctAnswerId)
+	  }
 	}
 
 	</script>
