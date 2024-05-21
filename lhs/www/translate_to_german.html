@@ -19,11 +19,11 @@
 				  <button onclick="hideAnswer('{{ correctAnswerId }}' )" class="btn btn-primary">Hide</button>
 				  <br>
 				  <span id="{{ resultId }}"></span>
-				  <span id="{{ correctAnswerId }}"></span>
+				  <span id="{{ correctAnswerId }}" style="visibility: hidden;">{{ item.german }}</span>
 				</div>
 		{% endfor %}
 		<br>
-		<button onclick="checkScore('{{ translations|length }}','{{ user }}')" class="btn btn-primary">Check Score</button>
+		<button onclick="checkScore('{{ translations|length }}','{{ user }}')" class="btn btn-primary">Submit All / Check Score</button>
 		<span>&nbsp;&nbsp;</span>
 		<span id="score"></span>
 		{% if user == 'Guest'  %}
@@ -76,14 +76,20 @@
 	  correctAnswerElement.textContent = correctAnswer;
 	  correctAnswerElement.style.color = "blue";
 	  correctAnswerElement.style.fontStyle = "italic"
+	  correctAnswerElement.style.visibility = 'visible';
 	}
 	function hideAnswer(correctAnswerId) {
 	  var correctAnswerElement = document.getElementById(correctAnswerId);
-	  correctAnswerElement.textContent = "";
+	  correctAnswerElement.style.visibility = 'hidden';
 	}
 	function checkScore(total_question_count, user) {
 	  var correctCount = 0;
 	  for (var i = 1; i <= total_question_count; i++) {
+			var inputId = "input" + i;
+			var resultId = "result" + i;
+			var correctAnswerId = "correctAnswer" + i;
+			correctAnswer = document.getElementById(correctAnswerId).textContent;
+			checkAnswer(inputId, correctAnswer, resultId, correctAnswerId)
             var spanContent = document.getElementById('result' + i).textContent;
             // Check if the span content is Correct or Incorrect and increment counters accordingly
             if (spanContent.trim() === "Correct") {
@@ -107,6 +113,7 @@
 			}
         });
 	}
+
 	</script>
 
 
