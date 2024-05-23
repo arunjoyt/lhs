@@ -38,15 +38,13 @@
 	 <table class="table table-sm table-hover">
 		<thead>
 		  <tr>
-			<th scope="col">#</th>
 			<th scope="col">Date</th>
 			<th scope="col">Score</th>
 		  </tr>
 		</thead>
-		<tbody>
+		<tbody id="scores-table-body">
 			{% for item in scores %}
 		  <tr>
-			<th scope="row">{{ loop.index }}</th>
 			<td>{{ item.submit_date.strftime("%Y-%m-%d %H:%M") }}</td>
 			<td>{{ item.correct_count }} / {{item.total_count}}</td>
 		  </tr>
@@ -103,7 +101,21 @@
 		scoreElement.textContent = correctCount+"/"+total_question_count;
 		if (user !== "Guest") {
 			saveScore(user, correctCount, total_question_count)
+			updateScoreOnUI(correctCount, total_question_count)
+
 		}
+	}
+	function updateScoreOnUI(correct_answer_count, total_question_count){
+		// Get table body
+        const tbody = document.getElementById('scores-table-body');
+        const row = tbody.insertRow(0);
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+		const date = new Date()
+		const formattedDate = formatDate(date);
+        cell1.innerHTML = formattedDate;
+        cell2.innerHTML = `${correct_answer_count} / ${total_question_count}`;
+
 	}
 	function saveScore(user, correct_answer_count, total_question_count) {
 		frappe.call({
@@ -129,6 +141,16 @@
 			var correctAnswerId = "correctAnswer" + i;
 			hideAnswer(correctAnswerId)
 	  }
+	}
+
+	function formatDate(date) {
+		const year = date.getFullYear();
+		const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+		const day = String(date.getDate()).padStart(2, '0');
+		const hours = String(date.getHours()).padStart(2, '0');
+		const minutes = String(date.getMinutes()).padStart(2, '0');
+
+		return `${year}-${month}-${day} ${hours}:${minutes}`;
 	}
 
 	</script>
